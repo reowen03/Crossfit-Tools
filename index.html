@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Echo Bike Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    button {
+      background: #00c853;
+      color: white;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background: #00b34a;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Echo Bike Calculator</h2>
+
+  <input type="number" id="calories" placeholder="Enter calories (e.g. 100)">
+
+  <select id="effort">
+    <option value="10">Easy</option>
+    <option value="15" selected>Moderate</option>
+    <option value="20">Hard</option>
+  </select>
+
+  <button onclick="calculateTime()">Calculate Time</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  function calculateTime() {
+    const calories = document.getElementById("calories").value;
+    const calPerMin = document.getElementById("effort").value;
+
+    if (!calories) {
+      document.getElementById("result").innerText = "Enter calories first.";
+      return;
+    }
+
+    const timeMinutes = calories / calPerMin;
+    const minutes = Math.floor(timeMinutes);
+    const seconds = Math.round((timeMinutes - minutes) * 60);
+
+    document.getElementById("result").innerText =
+      "Estimated Time: " + minutes + " min " + seconds + " sec";
+  }
+</script>
+
+</body>
+</html>
